@@ -19,9 +19,13 @@ The Star Schema contains one fact table and 4 dimentions. The logic to create th
 ## Files
 
 *img Folder* - Folder containing project images.
+
 *data.tar.gz* - File containing log files needed for the project.
+
 *create_tables.py* - Creates tables for sparkifydb.
+
 *etl.py* - File processing file containing ETL steps.
+
 *sql_queries.py* - File os SQL scripts containing table logic and CRUD operations.
 
 ## Project Executuion
