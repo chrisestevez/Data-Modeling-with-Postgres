@@ -6,6 +6,12 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """Extracts Songs and Artist data from song logs.
+
+    Args:
+        cur (obj): Cursor for connection to database.
+        filepath (str): File path to logs.
+    """
     # open song file
     df = pd.read_json(filepath , lines=True)
 
@@ -21,6 +27,12 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """Process logs from data folder.
+
+    Args:
+        cur (obj): Cursor for connection to database.
+        filepath (str): File path to logs.
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -34,7 +46,7 @@ def process_log_file(cur, filepath):
     time_data = [df.ts.values, t.dt.hour.values, t.dt.day.values\
         , t.dt.isocalendar().week.values, t.dt.month.values, t.dt.year.values\
             , t.dt.dayofweek.values]
-    column_labels = ('timestamp', 'hour', 'day', 'week', 'month', 'year'/
+    column_labels = ('timestamp', 'hour', 'day', 'week', 'month', 'year'\
                      , 'weekday')
     time_df = pd.DataFrame(dict(zip(column_labels,time_data)))
 
@@ -67,6 +79,14 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """Wrapper function that iterates over files and calls process log Function.
+
+    Args:
+        cur (obj): Cursor for connection to database.
+        conn (obj): Connection details to database.
+        filepath (str): File path.
+        func (obj): Function to process file.
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -86,6 +106,8 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """Excecutes steps required to process song and log files.
+    """
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
