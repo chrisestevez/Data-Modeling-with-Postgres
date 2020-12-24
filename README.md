@@ -28,7 +28,7 @@ The Star Schema contains one fact table and 4 dimentions. The logic to create th
 
 *sql_queries.py* - File os SQL scripts containing table logic and CRUD operations.
 
-## Project Executuion
+## Project Execution
 
 * Install Postgres(project used 12.5)
 * Install python 3.8.3
